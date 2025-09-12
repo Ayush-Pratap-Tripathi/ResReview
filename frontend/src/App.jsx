@@ -1,8 +1,17 @@
+import { useEffect, useState } from "react";
+import { getHello } from "./services/api";
+
 export default function App() {
+  const [msg, setMsg] = useState("");
+
+  useEffect(() => {
+    getHello().then(setMsg).catch(err => setMsg("Backend not reachable"));
+  }, []);
+
   return (
-    <div style={{ padding: 24, fontFamily: "Inter, sans-serif" }}>
+    <div style={{ padding: 24 }}>
       <h1>Hello Resume Screener Frontend</h1>
-      <p>If you see this, Vite is running.</p>
+      <p>Backend says: {msg}</p>
     </div>
   );
 }
