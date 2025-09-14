@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import { getHello } from "./services/api";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 export default function App() {
-  const [msg, setMsg] = useState("");
-
-  useEffect(() => {
-    getHello().then(setMsg).catch(err => setMsg("Backend not reachable" + err));
-  }, []);
-
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Hello Resume Screener Frontend</h1>
-      <p>Backend says: {msg}</p>
-    </div>
+    <BrowserRouter>
+      <nav>
+        <Link to="/login">Login</Link> | <Link to="/register">Register</Link>
+      </nav>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
