@@ -5,7 +5,7 @@ export default function App() {
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
-    getHello().then(setMsg).catch(err => setMsg("Backend not reachable"));
+    getHello().then(setMsg).catch(err => setMsg("Backend not reachable" + err));
   }, []);
 
   return (
